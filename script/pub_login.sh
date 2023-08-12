@@ -13,12 +13,18 @@ if [ -z "${PUB_DEV_PUBLISH_REFRESH_TOKEN}" ]; then
   exit 1
 fi
 
+if [ -z "${PUB_DEV_PUBLISH_ID_TOKEN}" ]; then
+  echo "Missing PUB_DEV_PUBLISH_ID_TOKEN environment variable"
+  exit 1
+fi
+
 
 # Create credentials.json file.
 cat <<EOF > ~/.pub-cache/credentials.json
 {
   "accessToken":"${PUB_DEV_PUBLISH_ACCESS_TOKEN}",
   "refreshToken":"${PUB_DEV_PUBLISH_REFRESH_TOKEN}",
+  "idToken": "${PUB_DEV_PUBLISH_ID_TOKEN}",
   "tokenEndpoint": "https://accounts.google.com/o/oauth2/token",
   "scopes":["https://www.googleapis.com/auth/userinfo.email","openid"],
   "expiration": 1691844747205

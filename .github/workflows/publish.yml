@@ -41,6 +41,7 @@ jobs:
         env:
           PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_ACCESS_TOKEN }}
           PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_REFRESH_TOKEN }}
+          PUB_DEV_PUBLISH_ID_TOKEN: ${{ secrets.PUB_ID_TOKEN }}
         run: |
           sh ./script/pub_login.sh
 
