@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v3
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
       # You can specify other versions if desired, see documentation here:
@@ -34,10 +34,18 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
+      
+
+      - name: Setup Pub Credentials
+        shell: bash
+        env:
+          PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+          PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+        run: |
+          sh ./script/pub_login.sh
+
       - name: Check Publish Warnings
         run: dart pub publish --dry-run
 
-      - name: Publish env_g
-        uses: k-paxian/dart-package-publisher@master
-        with:
-          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
+      - name: Publish Package
+        run: pub publish -f
