@@ -1,6 +1,6 @@
 name: env_g
 description: tool to generate dart file from env file
-version: 1.0.0-beta
+version: 1.0.1-beta
 repository: https://github.com/ibrahemDev/env_g
 
 environment:
